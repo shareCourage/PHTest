@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,73 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roman Chinese" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiY-UY-Tm3" customClass="PHLabel">
+                                <rect key="frame" x="76" y="59" width="119.5" height="21"/>
+                                <color key="backgroundColor" red="1" green="0.69500750202466044" blue="0.86391385801843357" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="2Jk-x8-hCC">
+                                <rect key="frame" x="28" y="90" width="544" height="177.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOh-3p-xFH">
+                                        <rect key="frame" x="5" y="5" width="534" height="81.5"/>
+                                        <color key="backgroundColor" red="1" green="0.78163723595002654" blue="0.61062018742017554" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">也就是分别设置了View的左边距，右边距和上边距，熟悉约束的人应该知道，这时候View的约束是不够的。为什么？
+因为，左边距和上边距确定了View的（x,y）,然后左边距和右边距确定了这个View的宽度，我们缺少了Height</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4b-Wm-ZMV">
+                                        <rect key="frame" x="5" y="91" width="534" height="81.5"/>
+                                        <color key="backgroundColor" red="1" green="0.37935311574999298" blue="0.68925145428464707" alpha="1" colorSpace="calibratedRGB"/>
+                                        <string key="text">也就是分别设置了View的左边距，右边距和上边距，熟悉约束的人应该知道，这时候View的约束是不够的。为什么？
+因为，左边距和上边距确定了View的（x,y）,然后左边距和右边距确定了这个View的宽度，我们缺少了Height</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="o4b-Wm-ZMV" firstAttribute="top" secondItem="nOh-3p-xFH" secondAttribute="bottom" constant="5" id="CZK-pj-Hfm"/>
+                                    <constraint firstItem="o4b-Wm-ZMV" firstAttribute="leading" secondItem="2Jk-x8-hCC" secondAttribute="leading" constant="5" id="D5N-Bv-J07"/>
+                                    <constraint firstItem="nOh-3p-xFH" firstAttribute="leading" secondItem="2Jk-x8-hCC" secondAttribute="leading" constant="5" id="Lzs-93-GjB"/>
+                                    <constraint firstAttribute="trailing" secondItem="o4b-Wm-ZMV" secondAttribute="trailing" constant="5" id="YXG-mR-NZL"/>
+                                    <constraint firstItem="nOh-3p-xFH" firstAttribute="top" secondItem="2Jk-x8-hCC" secondAttribute="top" constant="5" id="dI4-tR-Czb"/>
+                                    <constraint firstAttribute="trailing" secondItem="nOh-3p-xFH" secondAttribute="trailing" constant="5" id="dfo-UY-fVW"/>
+                                    <constraint firstAttribute="bottom" secondItem="o4b-Wm-ZMV" secondAttribute="bottom" constant="5" id="k1x-4r-3aA"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ao3-fL-xG8">
+                                <rect key="frame" x="38" y="403" width="194" height="165"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="194" id="8AC-Gh-11B"/>
+                                    <constraint firstAttribute="height" constant="165" id="kBg-MQ-ugE"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xiY-UY-Tm3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="56" id="0zn-KN-6Yz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Jk-x8-hCC" secondAttribute="trailing" constant="8" id="7IB-NI-gJb"/>
+                            <constraint firstItem="2Jk-x8-hCC" firstAttribute="top" secondItem="xiY-UY-Tm3" secondAttribute="bottom" constant="10" id="DUL-nB-QnU"/>
+                            <constraint firstItem="Ao3-fL-xG8" firstAttribute="top" secondItem="2Jk-x8-hCC" secondAttribute="bottom" constant="20" id="OF8-wO-lR9"/>
+                            <constraint firstItem="2Jk-x8-hCC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="Xc6-Gr-5Od"/>
+                            <constraint firstItem="Ao3-fL-xG8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="18" id="vWD-Ob-7tW"/>
+                            <constraint firstItem="xiY-UY-Tm3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="xU0-Bu-2nw"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testImageView" destination="Ao3-fL-xG8" id="iar-Ut-21G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="353" y="337"/>
         </scene>
     </scenes>
 </document>
