@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class RACSubject;
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) RACSubject *delegateSubject;
 
 @end
 

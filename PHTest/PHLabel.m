@@ -15,7 +15,7 @@
 {
     CGSize originalSize = [super intrinsicContentSize];
     
-    CGFloat intrinscValue = 50;
+    CGFloat intrinscValue = 20;
     CGSize size = CGSizeMake(originalSize.width + intrinscValue, originalSize.height + intrinscValue);
     
     return size;
