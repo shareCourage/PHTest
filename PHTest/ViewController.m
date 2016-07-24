@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
+//#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;

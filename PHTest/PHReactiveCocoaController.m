@@ -7,7 +7,7 @@
 //
 
 #import "PHReactiveCocoaController.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
 #import "ViewController.h"
 #import "AFNetworking.h"
 
@@ -37,7 +37,17 @@
     [mparas setObject:requestString forKey:@"jsonString"];
     [manager POST:host parameters:mparas.copy success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSLog(@"%@", responseObject);
-        NSLog(@"%@", responseObject[@"message"]);
+        NSString *message = responseObject[@"message"];
+        NSLog(@"%@", message);
+        NSDictionary *data = responseObject[@"data"];
+        if (data) {
+            NSString *info = data[@"info"];
+            NSLog(@"%@", info);
+        }
+        
+        if ([message isEqualToString:@"使用成功"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:self.textField.text forKey:@"codeNum"];
+        }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
@@ -48,7 +58,7 @@
 }
 
 - (IBAction)addNumClick:(id)sender {
-    NSString *userId = UserId_1597017;//159
+    NSString *userId = UserId_1581857;//159
     NSDictionary *parameters = @{@"userId": userId};
     NSString *host = @"http://139.196.109.201/app/scanWxForward.do";
     [self af_RequestOperationManagerWithHost:host para:parameters json:YES];
@@ -57,7 +67,7 @@
 - (IBAction)commitClick:(id)sender {
     NSString *scanHost = @"http://139.196.109.201/app/scanmedcodeUpgrade.do";
     NSString *meCode = [NSString stringWithFormat:@"code%@", self.textField.text];
-    NSString *userId = UserId_1597017;//159
+    NSString *userId = UserId_1581857;//159
     NSDictionary *parameters = @{@"sessionid": @"",
                                  @"medCode": meCode,
                                  @"userId": userId,
@@ -83,7 +93,12 @@
 }
 
 - (void)textFieldSetup {
-    self.textField.text = @"82013634018376735735";
+    NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"codeNum"];
+    if (string.length != 0) {
+        self.textField.text = string;//@"82013634018376735745"
+    } else {
+        self.textField.text = @"82013634018376735758";
+    }
 }
 
 - (void)viewDidLoad {
