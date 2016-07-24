@@ -16,6 +16,12 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @end
 
+#define UserId_1581857  @"fdc2c531-dc9c-4388-8b25-f698eafe43ae"
+#define BankId_1581857  @"a9a10056-373e-4954-8a08-e1d1ef057183"
+
+#define UserId_1597017  @"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"
+#define BankId_1597017  @"070f9342-ffb4-44af-83df-04db2f84ed01"
+
 @implementation PHReactiveCocoaController
 - (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -41,28 +47,43 @@
     [self af_RequestOperationManagerWithHost:host para:para json:NO];
 }
 
-- (void)addNumberWithUserId:(NSString *)userId{
+- (IBAction)addNumClick:(id)sender {
+    NSString *userId = UserId_1597017;//159
     NSDictionary *parameters = @{@"userId": userId};
     NSString *host = @"http://139.196.109.201/app/scanWxForward.do";
     [self af_RequestOperationManagerWithHost:host para:parameters json:YES];
 }
 
-- (IBAction)addNumClick:(id)sender {
-    [self addNumberWithUserId:@"fdc2c531-dc9c-4388-8b25-f698eafe43ae"];
-}
-
 - (IBAction)commitClick:(id)sender {
     NSString *scanHost = @"http://139.196.109.201/app/scanmedcodeUpgrade.do";
     NSString *meCode = [NSString stringWithFormat:@"code%@", self.textField.text];
-    NSString *userId = @"fdc2c531-dc9c-4388-8b25-f698eafe43ae";
+    NSString *userId = UserId_1597017;//159
     NSDictionary *parameters = @{@"sessionid": @"",
                                  @"medCode": meCode,
                                  @"userId": userId,
                                  @"userType": @"1"};
     [self af_RequestOperationManagerWithHost:scanHost para:parameters];
 }
+
+- (IBAction)withDraw:(id)sender {
+    [self withdrawWithBankId:BankId_1597017 userId:UserId_1597017];
+}
+
+- (void)withdrawWithBankId:(NSString *)bankId userId:(NSString *)userId {
+    /*
+     {"fee":"4","sessionid":"","bankcardid":"a9a10056-373e-4954-8a08-e1d1ef057183","userId":"d4061d1b-7598-41b8-8ed5-ff8fa25fd389","userType":"1"}
+     */
+    NSString *withdrawHost = @"http://139.196.109.201/app/withdraw.do";
+    NSDictionary *para = @{@"fee": @"10",
+                           @"sessionid": @"",
+                           @"bankcardid": bankId,
+                           @"userId": userId,
+                           @"userType": @"1"};
+    [self af_RequestOperationManagerWithHost:withdrawHost para:para];
+}
+
 - (void)textFieldSetup {
-    self.textField.text = @"82013634018376735728";
+    self.textField.text = @"82013634018376735735";
 }
 
 - (void)viewDidLoad {
