@@ -242,12 +242,13 @@
 - (NSTimeInterval)frameDelayGreatestCommonDivisor
 {
     // Presision is set to half of the `kFLAnimatedImageDelayTimeIntervalMinimum` in order to minimize frame dropping.
-    const NSTimeInterval kGreatestCommonDivisorPrecision = 2.0 / kFLAnimatedImageDelayTimeIntervalMinimum;
+    const NSTimeInterval kGreatestCommonDivisorPrecision = 2.0 / kFLAnimatedImageDelayTimeIntervalMinimum;//固定值10
 
     NSArray *delays = self.animatedImage.delayTimesForIndexes.allValues;
 
     // Scales the frame delays by `kGreatestCommonDivisorPrecision`
     // then converts it to an UInteger for in order to calculate the GCD.
+    //lrint四舍五入
     NSUInteger scaledGCD = lrint([delays.firstObject floatValue] * kGreatestCommonDivisorPrecision);
     for (NSNumber *value in delays) {
         scaledGCD = gcd(lrint([value floatValue] * kGreatestCommonDivisorPrecision), scaledGCD);
@@ -304,6 +305,7 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
     }
 }
 
+//使用者可以自己定义runloop的Mode
 - (void)setRunLoopMode:(NSString *)runLoopMode
 {
     if (![@[NSDefaultRunLoopMode, NSRunLoopCommonModes] containsObject:runLoopMode]) {
@@ -314,16 +316,17 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
     }
 }
 
+//停止定时器的运转就可以达到目的
 - (void)stopAnimating
 {
     if (self.animatedImage) {
         self.displayLink.paused = YES;
-    } else {
+    } else {//没有FLAnimatedImage，就是用UIImageView自带方法
         [super stopAnimating];
     }
 }
 
-
+//判断动画知否在执行，同样是判断定时器的状态，如果无FLAnimatedImage，则使用UIImageView方法
 - (BOOL)isAnimating
 {
     BOOL isAnimating = NO;
@@ -337,7 +340,7 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 
 
 #pragma mark Highlighted Image Unsupport
-
+//FLAnimatedImageView无higlighted方法，这里只是为了兼容UIImageView，本可以完全不用重写这个方法，但原因作者写的很明显(可是我并没有去测试过为何嵌入到UICollectionViewCell需要这个方法)
 - (void)setHighlighted:(BOOL)highlighted
 {
     // Highlighted image is unsupported for animated images, but implementing it breaks the image view when embedded in a UICollectionViewCell.
@@ -421,7 +424,8 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 + (NSString *)defaultRunLoopMode
 {
     // Key off `activeProcessorCount` (as opposed to `processorCount`) since the system could shut down cores in certain situations.
-    return [NSProcessInfo processInfo].activeProcessorCount > 1 ? NSRunLoopCommonModes : NSDefaultRunLoopMode;
+    NSInteger processorCount = [NSProcessInfo processInfo].activeProcessorCount;
+    return  processorCount > 1 ? NSRunLoopCommonModes : NSDefaultRunLoopMode;
 }
 
 
