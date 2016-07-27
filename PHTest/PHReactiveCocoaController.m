@@ -7,9 +7,9 @@
 //
 
 #import "PHReactiveCocoaController.h"
-#import "ReactiveCocoa.h"
 #import "ViewController.h"
 #import "AFNetworking.h"
+#import "ReactiveCocoa.h"
 
 @interface PHReactiveCocoaController ()
 
@@ -21,6 +21,9 @@
 
 #define UserId_1597017  @"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"
 #define BankId_1597017  @"070f9342-ffb4-44af-83df-04db2f84ed01"
+
+#define UserId_1581446  @"54b5b46c-9d3c-4900-b64c-7abdf7adae42"
+#define BankId_1581446  @"b97cd5dc-776e-43db-8dfa-63073b33312b"
 
 @implementation PHReactiveCocoaController
 - (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json{
@@ -58,7 +61,7 @@
 }
 
 - (IBAction)addNumClick:(id)sender {
-    NSString *userId = UserId_1581857;//159
+    NSString *userId = UserId_1581446;//159
     NSDictionary *parameters = @{@"userId": userId};
     NSString *host = @"http://139.196.109.201/app/scanWxForward.do";
     [self af_RequestOperationManagerWithHost:host para:parameters json:YES];
@@ -67,7 +70,7 @@
 - (IBAction)commitClick:(id)sender {
     NSString *scanHost = @"http://139.196.109.201/app/scanmedcodeUpgrade.do";
     NSString *meCode = [NSString stringWithFormat:@"code%@", self.textField.text];
-    NSString *userId = UserId_1581857;//159
+    NSString *userId = UserId_1581446;//159
     NSDictionary *parameters = @{@"sessionid": @"",
                                  @"medCode": meCode,
                                  @"userId": userId,
@@ -97,7 +100,7 @@
     if (string.length != 0) {
         self.textField.text = string;//@"82013634018376735745"
     } else {
-        self.textField.text = @"82013634018376735758";
+        self.textField.text = @"82013634018376735645";
     }
 }
 
