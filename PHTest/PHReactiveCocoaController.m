@@ -10,20 +10,21 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "ReactiveCocoa.h"
+#import "YJQInfo.h"
 
 @interface PHReactiveCocoaController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @end
 
-#define UserId_1581857  @"fdc2c531-dc9c-4388-8b25-f698eafe43ae"
-#define BankId_1581857  @"a9a10056-373e-4954-8a08-e1d1ef057183"
-
-#define UserId_1597017  @"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"
-#define BankId_1597017  @"070f9342-ffb4-44af-83df-04db2f84ed01"
-
-#define UserId_1581446  @"54b5b46c-9d3c-4900-b64c-7abdf7adae42"
-#define BankId_1581446  @"b97cd5dc-776e-43db-8dfa-63073b33312b"
+//#define UserId_1581857  @"fdc2c531-dc9c-4388-8b25-f698eafe43ae"
+//#define BankId_1581857  @"a9a10056-373e-4954-8a08-e1d1ef057183"
+//
+//#define UserId_1597017  @"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"
+//#define BankId_1597017  @"070f9342-ffb4-44af-83df-04db2f84ed01"
+//
+//#define UserId_1581446  @"54b5b46c-9d3c-4900-b64c-7abdf7adae42"
+//#define BankId_1581446  @"b97cd5dc-776e-43db-8dfa-63073b33312b"
 
 @implementation PHReactiveCocoaController
 - (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json{
@@ -61,7 +62,7 @@
 }
 
 - (IBAction)addNumClick:(id)sender {
-    NSString *userId = UserId_1581446;//159
+    NSString *userId = self.yjqModel.userId;//159
     NSDictionary *parameters = @{@"userId": userId};
     NSString *host = @"http://139.196.109.201/app/scanWxForward.do";
     [self af_RequestOperationManagerWithHost:host para:parameters json:YES];
@@ -70,7 +71,7 @@
 - (IBAction)commitClick:(id)sender {
     NSString *scanHost = @"http://139.196.109.201/app/scanmedcodeUpgrade.do";
     NSString *meCode = [NSString stringWithFormat:@"code%@", self.textField.text];
-    NSString *userId = UserId_1581446;//159
+    NSString *userId = self.yjqModel.userId;//159
     NSDictionary *parameters = @{@"sessionid": @"",
                                  @"medCode": meCode,
                                  @"userId": userId,
@@ -79,7 +80,7 @@
 }
 
 - (IBAction)withDraw:(id)sender {
-    [self withdrawWithBankId:BankId_1597017 userId:UserId_1597017];
+    [self withdrawWithBankId:self.yjqModel.bankId userId:self.yjqModel.userId];
 }
 
 - (void)withdrawWithBankId:(NSString *)bankId userId:(NSString *)userId {

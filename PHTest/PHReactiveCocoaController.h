@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class YJQInfo;
 
 @interface PHReactiveCocoaController : UIViewController
+
+@property (nonatomic, strong) YJQInfo *yjqModel;
 
 @end

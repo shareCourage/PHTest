@@ -18,6 +18,8 @@
 		693D5B671D217B3300D0A377 /* PHTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B661D217B3300D0A377 /* PHTestUITests.m */; };
 		693D5B761D217C0900D0A377 /* PHLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B751D217C0900D0A377 /* PHLabel.m */; };
 		69D7C2B11D37F71200EE3261 /* PHReactiveCocoaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */; };
+		A9D10AE61D49F90700E3BF31 /* PHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */; };
+		A9D10AE91D49FDBC00E3BF31 /* YJQInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		69D7C2AF1D37F71200EE3261 /* PHReactiveCocoaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHReactiveCocoaController.h; sourceTree = "<group>"; };
 		69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHReactiveCocoaController.m; sourceTree = "<group>"; };
 		A9032F98669DD0B7F774C222 /* Pods_PHTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PHTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9D10AE41D49F90700E3BF31 /* PHTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTableViewController.h; sourceTree = "<group>"; };
+		A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHTableViewController.m; sourceTree = "<group>"; };
+		A9D10AE71D49FDBC00E3BF31 /* YJQInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJQInfo.h; sourceTree = "<group>"; };
+		A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJQInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,10 @@
 				693D5B481D217B3200D0A377 /* ViewController.m */,
 				69D7C2AF1D37F71200EE3261 /* PHReactiveCocoaController.h */,
 				69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */,
+				A9D10AE41D49F90700E3BF31 /* PHTableViewController.h */,
+				A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */,
+				A9D10AE71D49FDBC00E3BF31 /* YJQInfo.h */,
+				A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */,
 				693D5B4A1D217B3200D0A377 /* Main.storyboard */,
 				693D5B4D1D217B3200D0A377 /* Assets.xcassets */,
 				693D5B4F1D217B3200D0A377 /* LaunchScreen.storyboard */,
@@ -356,6 +366,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				693D5B761D217C0900D0A377 /* PHLabel.m in Sources */,
+				A9D10AE91D49FDBC00E3BF31 /* YJQInfo.m in Sources */,
+				A9D10AE61D49F90700E3BF31 /* PHTableViewController.m in Sources */,
 				693D5B491D217B3200D0A377 /* ViewController.m in Sources */,
 				693D5B461D217B3200D0A377 /* AppDelegate.m in Sources */,
 				693D5B431D217B3200D0A377 /* main.m in Sources */,
