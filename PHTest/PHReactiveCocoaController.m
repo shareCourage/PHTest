@@ -63,6 +63,7 @@
 
 - (IBAction)addNumClick:(id)sender {
     NSString *userId = self.yjqModel.userId;//159
+    if (userId.length == 0) return;
     NSDictionary *parameters = @{@"userId": userId};
     NSString *host = @"http://139.196.109.201/app/scanWxForward.do";
     [self af_RequestOperationManagerWithHost:host para:parameters json:YES];
@@ -72,6 +73,7 @@
     NSString *scanHost = @"http://139.196.109.201/app/scanmedcodeUpgrade.do";
     NSString *meCode = [NSString stringWithFormat:@"code%@", self.textField.text];
     NSString *userId = self.yjqModel.userId;//159
+    if (userId.length == 0) return;
     NSDictionary *parameters = @{@"sessionid": @"",
                                  @"medCode": meCode,
                                  @"userId": userId,

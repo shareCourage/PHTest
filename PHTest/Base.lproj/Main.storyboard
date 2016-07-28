@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--TItleLabel-->
         <scene sceneID="kvp-7T-Q83">
             <objects>
                 <tableViewController id="MQe-vu-uBk" customClass="PHTableViewController" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                             <outlet property="delegate" destination="MQe-vu-uBk" id="0MM-dG-6J2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="5P8-75-m8y"/>
+                    <navigationItem key="navigationItem" title="TItleLabel" id="5P8-75-m8y"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xwk-MQ-vWE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
