@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSMutableArray *dataSource;
 @property (nonatomic, weak) YJQInfo *selectInfo;
 @property (nonatomic, strong) UITextField *titleTextField;
-@property (nonatomic, strong) UILabel *leftLabel;
+@property (nonatomic, strong) UIButton *leftBtn;
 
 @end
 
@@ -29,21 +29,7 @@
     }
     return _dataSource;
 }
-- (YJQInfoGroup *)userInfosWithUserName:(NSArray *)userNames userIds:(NSArray *)userIds password:(NSString *)password header:(NSString *)header{
-    NSMutableArray *arrays = @[].mutableCopy;
-    for (NSInteger index = 0; index < userIds.count; index ++) {
-        NSString *userId = nil;//userIds[index];
-        NSString *userName = userNames[index];
-        YJQInfo *model = [[YJQInfo alloc] initWithUserId:userId bankId:nil userName:userName password:password];
-        __weak typeof(self) weakSelf = self;
-        model.completion = ^{
-            [weakSelf.tableView reloadData];
-        };
-        [arrays addObject:model];
-    }
-    YJQInfoGroup *group = [[YJQInfoGroup alloc] initWithInfos:arrays.copy header:header];
-    return group;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,17 +47,23 @@
     self.titleTextField = titleTF;
     
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
-    label.textColor = [UIColor greenColor];
-    label.textAlignment = NSTextAlignmentCenter;
+    UIButton *label = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+    [label setBackgroundColor:[UIColor purpleColor]];
+    [label addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [label setTitle:@"Start" forState:UIControlStateNormal];
+    [label setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:label];
     self.navigationItem.leftBarButtonItem = leftItem;
-    self.leftLabel = label;
+    self.leftBtn = label;
     
     UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addClick)];
     self.navigationItem.rightBarButtonItem = addItem;
     
     [self addUserName];
+}
+
+- (void)leftBtnClick {
+    [self scanMethod];
 }
 
 - (void)addClick {
@@ -131,6 +123,7 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     self.selectInfo = model;
+    [self addClick];
     return;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PHReactiveCocoaController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PHReactiveCocoaController"];
@@ -167,12 +160,23 @@
             NSLog(@"%@", info);
         }
         if ([message isEqualToString:@"使用成功"]) {
-            [[NSUserDefaults standardUserDefaults] setObject:self.titleTextField.text forKey:@"codeNum"];
-            self.leftLabel.text = @"Y";
-            self.leftLabel.textColor = [UIColor greenColor];
+            NSString *string = self.titleTextField.text;
+            NSInteger len = 4;
+            NSInteger loc = string.length - len;
+            NSRange range = NSMakeRange(loc, len);
+            NSString *settleStr = [string substringWithRange:range];
+            NSInteger index = [settleStr integerValue];
+            index++;
+            settleStr = [NSString stringWithFormat:@"%@",@(index)];
+            NSMutableString *mustring = string.mutableCopy;
+            [mustring replaceCharactersInRange:range withString:settleStr];
+            self.titleTextField.text = mustring.copy;
+            [[NSUserDefaults standardUserDefaults] setObject:mustring.copy forKey:@"codeNum"];
+            [self.leftBtn setTitle:@"Y" forState:UIControlStateNormal];
+            [self.leftBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
         } else {
-            self.leftLabel.text = @"N";
-            self.leftLabel.textColor = [UIColor redColor];
+            [self.leftBtn setTitle:@"N" forState:UIControlStateNormal];
+            [self.leftBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@", error);
@@ -196,6 +200,11 @@
                                                              @"54b5b46c-9d3c-4900-b64c-7abdf7adae42"]
                                                   password:@"123456"
                                                     header:@"One"]];
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"15970179507"]
+                                                   userIds:@[@"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"]
+                                                  password:@"371759"
+                                                    header:@"One2"]];
+
     [self.dataSource addObject:[self userInfosWithUserName:@[@"17895331630",
                                                              @"17865901923",
                                                              @"15718243730",
@@ -213,7 +222,21 @@
                                                   password:@"hu881125h"
                                                     header:@"胡子"]];
 }
-
+- (YJQInfoGroup *)userInfosWithUserName:(NSArray *)userNames userIds:(NSArray *)userIds password:(NSString *)password header:(NSString *)header{
+    NSMutableArray *arrays = @[].mutableCopy;
+    for (NSInteger index = 0; index < userIds.count; index ++) {
+        NSString *userId = userIds[index];
+        NSString *userName = userNames[index];
+        YJQInfo *model = [[YJQInfo alloc] initWithUserId:userId bankId:nil userName:userName password:password];
+        __weak typeof(self) weakSelf = self;
+        model.completion = ^{
+            [weakSelf.tableView reloadData];
+        };
+        [arrays addObject:model];
+    }
+    YJQInfoGroup *group = [[YJQInfoGroup alloc] initWithInfos:arrays.copy header:header];
+    return group;
+}
 
 @end
 

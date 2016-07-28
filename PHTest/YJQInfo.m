@@ -43,8 +43,8 @@
     NSMutableDictionary *mparas = @{}.mutableCopy;
     [mparas setObject:requestString forKey:@"jsonString"];
     [manager POST:host parameters:mparas.copy success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"%@", responseObject);
         NSString *message = responseObject[@"message"];
+        NSLog(@"%@， %@", responseObject, message);
         if ([message isEqualToString:@"密码错误"]) {
             NSLog(@"Telephone =====%@", self.userName);
         }
