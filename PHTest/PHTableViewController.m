@@ -200,10 +200,10 @@
                                                              @"54b5b46c-9d3c-4900-b64c-7abdf7adae42"]
                                                   password:@"123456"
                                                     header:@"One"]];
-    [self.dataSource addObject:[self userInfosWithUserName:@[@"15970179507"]
-                                                   userIds:@[@"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"]
-                                                  password:@"371759"
-                                                    header:@"One2"]];
+//    [self.dataSource addObject:[self userInfosWithUserName:@[@"15970179507"]
+//                                                   userIds:@[@"d4061d1b-7598-41b8-8ed5-ff8fa25fd389"]
+//                                                  password:@"123456"
+//                                                    header:@"One2"]];
 
     [self.dataSource addObject:[self userInfosWithUserName:@[@"17895331630",
                                                              @"17865901923",
@@ -221,12 +221,28 @@
                                                              @"6e32b97f-c835-4a3d-a1a3-b44d0fa050d4"]
                                                   password:@"hu881125h"
                                                     header:@"胡子"]];
+    
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"13169542457",
+                                                             @"15594625518",
+                                                             @"13201511884",
+                                                             @"13238686138",
+                                                             @"18423248804",
+                                                             @"15820756843",
+                                                             @"13651406599",
+                                                             @"15916931145"]
+                                                   userIds:nil
+                                                  password:@"hu881125h"
+                                                    header:@"胡子0730"]];
 }
 - (YJQInfoGroup *)userInfosWithUserName:(NSArray *)userNames userIds:(NSArray *)userIds password:(NSString *)password header:(NSString *)header{
     NSMutableArray *arrays = @[].mutableCopy;
-    for (NSInteger index = 0; index < userIds.count; index ++) {
-        NSString *userId = userIds[index];
+    for (NSInteger index = 0; index < userNames.count; index ++) {
+        NSString *userId = userIds ? userIds[index] : nil;
+        
         NSString *userName = userNames[index];
+        if (!userId) {
+            NSLog(@"%@",userName);
+        }
         YJQInfo *model = [[YJQInfo alloc] initWithUserId:userId bankId:nil userName:userName password:password];
         __weak typeof(self) weakSelf = self;
         model.completion = ^{
