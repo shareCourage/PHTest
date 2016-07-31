@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		339A75E9521DBEBDF26479C2 /* Pods_PHTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9032F98669DD0B7F774C222 /* Pods_PHTest.framework */; };
+		6915E2D61D4CF164001BD1D6 /* PHTargetProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6915E2D51D4CF164001BD1D6 /* PHTargetProxy.m */; };
 		693D5B431D217B3200D0A377 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B421D217B3200D0A377 /* main.m */; };
 		693D5B461D217B3200D0A377 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B451D217B3200D0A377 /* AppDelegate.m */; };
 		693D5B491D217B3200D0A377 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B481D217B3200D0A377 /* ViewController.m */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		0BB58996768FA4BE5EBEE87D /* Pods-PHTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PHTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PHTest/Pods-PHTest.debug.xcconfig"; sourceTree = "<group>"; };
 		5E28DD8F675C8B61E82DC389 /* Pods-PHTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PHTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-PHTest/Pods-PHTest.release.xcconfig"; sourceTree = "<group>"; };
+		6915E2D41D4CF164001BD1D6 /* PHTargetProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHTargetProxy.h; sourceTree = "<group>"; };
+		6915E2D51D4CF164001BD1D6 /* PHTargetProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHTargetProxy.m; sourceTree = "<group>"; };
 		693D5B3E1D217B3200D0A377 /* PHTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PHTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693D5B421D217B3200D0A377 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		693D5B441D217B3200D0A377 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */,
 				A9D10AE71D49FDBC00E3BF31 /* YJQInfo.h */,
 				A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */,
+				6915E2D41D4CF164001BD1D6 /* PHTargetProxy.h */,
+				6915E2D51D4CF164001BD1D6 /* PHTargetProxy.m */,
 				693D5B4A1D217B3200D0A377 /* Main.storyboard */,
 				693D5B4D1D217B3200D0A377 /* Assets.xcassets */,
 				693D5B4F1D217B3200D0A377 /* LaunchScreen.storyboard */,
@@ -368,6 +373,7 @@
 				693D5B761D217C0900D0A377 /* PHLabel.m in Sources */,
 				A9D10AE91D49FDBC00E3BF31 /* YJQInfo.m in Sources */,
 				A9D10AE61D49F90700E3BF31 /* PHTableViewController.m in Sources */,
+				6915E2D61D4CF164001BD1D6 /* PHTargetProxy.m in Sources */,
 				693D5B491D217B3200D0A377 /* ViewController.m in Sources */,
 				693D5B461D217B3200D0A377 /* AppDelegate.m in Sources */,
 				693D5B431D217B3200D0A377 /* main.m in Sources */,

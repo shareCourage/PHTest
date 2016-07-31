@@ -46,6 +46,7 @@
     [self.view insertSubview:self.labelL belowSubview:self.testImageView];
     
     NSString *urlStr = @"http://buspic.gpsoo.net/goome01/M00/02/51/wKgCoVd3jRGEZEMDAAAAAH8EPZE85.jpeg";
+    urlStr = @"http://ftp.ytbbs.com/attachments/forum/201404/14/165935vfzw45q2574ggvii.gif";
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{

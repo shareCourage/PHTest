@@ -11,6 +11,7 @@
 #import "YJQInfo.h"
 #import "PHReactiveCocoaController.h"
 #import "AFNetworking.h"
+#import "PHTargetProxy.h"
 
 @interface PHTableViewController ()
 
@@ -30,9 +31,64 @@
     return _dataSource;
 }
 
+- (void)proxyLearn {
+    
+    // Create an empty mutable string, which will be one of the
+    
+    // real objects for the proxy.
+    
+    NSMutableString *string = [[NSMutableString alloc] init];
+    
+    
+    
+    // Create an empty mutable array, which will be the other
+    
+    // real object for the proxy.
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    
+    
+    // Create a proxy to wrap the real objects.  This is rather
+    
+    // artificial for the purposes of this example -- you'd rarely
+    
+    // have a single proxy covering two objects.  But it is possible.
+    
+    id proxy = [[PHTargetProxy alloc] initWithTarget1:string target2:array];
+    
+    
+    
+    // Note that we can't use appendFormat:, because vararg methods
+    
+    // cannot be forwarded!
+    
+    [proxy appendString:@"This "];
+    
+    [proxy appendString:@"is "];
+    
+    [proxy addObject:string];
+    
+    [proxy appendString:@"a "];
+    
+    [proxy appendString:@"test!"];
+    
+    if ([[proxy objectAtIndex:0] isEqualToString:@"This is a test!"]) {
+        
+        NSLog(@"Appending successful.%@", proxy);
+        
+    } else {
+        
+        NSLog(@"Appending failed, got: '%@'", proxy);
+        
+    }
+    NSLog(@"Example finished without errors.");
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self proxyLearn];
     UITextField *titleTF = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     titleTF.borderStyle = UITextBorderStyleRoundedRect;
     titleTF.textColor = [UIColor redColor];
@@ -123,20 +179,15 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     self.selectInfo = model;
+#if 1
     [self addClick];
-    return;
+#else
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     PHReactiveCocoaController *vc = [storyboard instantiateViewControllerWithIdentifier:@"PHReactiveCocoaController"];
     vc.yjqModel = model;
     [self.navigationController pushViewController:vc animated:YES];
+#endif
 }
-
-
-
-
-
-
-
 
 - (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -222,12 +273,12 @@
                                                   password:@"hu881125h"
                                                     header:@"胡子"]];
     
-    [self.dataSource addObject:[self userInfosWithUserName:@[@"13169542457",
-                                                             @"15594625518",
-                                                             @"13201511884",
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"13169542457",//绑卡
+                                                             @"15594625518",//绑卡
+                                                             @"13201511884",//绑卡
                                                              @"13238686138",
                                                              @"18423248804",
-                                                             @"15820756843",
+                                                             @"15820756843",//绑卡
                                                              @"13651406599",
                                                              @"15916931145"]
                                                    userIds:nil
@@ -241,7 +292,7 @@
         
         NSString *userName = userNames[index];
         if (!userId) {
-            NSLog(@"%@",userName);
+//            NSLog(@"%@",userName);
         }
         YJQInfo *model = [[YJQInfo alloc] initWithUserId:userId bankId:nil userName:userName password:password];
         __weak typeof(self) weakSelf = self;

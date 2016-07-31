@@ -431,7 +431,6 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 
 #pragma mark - CALayerDelegate (Informal)
 #pragma mark Providing the Layer's Content
-
 - (void)displayLayer:(CALayer *)layer
 {
     layer.contents = (__bridge id)self.image.CGImage;
