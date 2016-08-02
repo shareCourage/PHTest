@@ -9,6 +9,8 @@
 #import "YJQInfo.h"
 #import "AFNetworking.h"
 
+typedef void(^YJQDictBlock)(NSDictionary *dict);
+
 @implementation YJQInfo
 /*
  {
@@ -30,7 +32,7 @@
 	}
  }
  */
-- (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json{
+- (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para json:(BOOL)json completion:(YJQDictBlock)completion{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //    manager.requestSerializer=[AFJSONRequestSerializer serializer];
     if (json) {
@@ -43,19 +45,9 @@
     NSMutableDictionary *mparas = @{}.mutableCopy;
     [mparas setObject:requestString forKey:@"jsonString"];
     [manager POST:host parameters:mparas.copy success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSString *message = responseObject[@"message"];
-        NSLog(@"%@， %@", responseObject, message);
-        if ([message isEqualToString:@"密码错误"]) {
-            NSLog(@"Telephone =====%@", self.userName);
+        if (completion) {
+            completion(responseObject);
         }
-        NSDictionary *data = responseObject[@"data"];
-        if (data) {
-            NSString *idInfo = data[@"id"];
-            NSLog(@"id -> %@", idInfo);
-            _userId = idInfo;
-            [[NSUserDefaults standardUserDefaults] setObject:idInfo forKey:[NSString stringWithFormat:@"%@telephone",self.userName]];
-        }
-        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
@@ -84,12 +76,135 @@
                                @"userType": @"1",
                                @"version": @"1.2",
                                @"operateSysType": @"1"};
-        [self af_RequestOperationManagerWithHost:host para:para json:NO];
+        [self af_RequestOperationManagerWithHost:host para:para json:NO completion:^(NSDictionary *dict) {
+            NSString *message = dict[@"message"];
+            NSLog(@"%@", message);
+            if ([message isEqualToString:@"密码错误"]) {
+                NSLog(@"Telephone =====%@", self.userName);
+            }
+            NSDictionary *data = dict[@"data"];
+            if (data) {
+                NSString *idInfo = data[@"id"];
+                NSLog(@"id -> %@", idInfo);
+                _userId = idInfo;
+                [[NSUserDefaults standardUserDefaults] setObject:idInfo forKey:[NSString stringWithFormat:@"%@telephone",self.userName]];
+            }
+        }];
     }
+//    [self balanceCheck];
+//    [self bankIdCheck];
 }
+
+/*
+ *http://139.196.109.201/app/mybalanceUpgrade.do 查看余额
+ {"sessionid":"","userId":"54b5b46c-9d3c-4900-b64c-7abdf7adae42","userType":"1"}
+ {
+	"message": "查询成功",
+	"balance": "9.7",
+	"code": "0",
+	"sessionid": "",
+	"success": true
+ }
+ */
+- (void)balanceCheck {
+    NSString *host = @"http://139.196.109.201/app/mybalanceUpgrade.do";
+    if (self.userId.length == 0) return;
+    NSDictionary *para = @{@"sessionid": @"",
+                           @"userId": self.userId,
+                           @"userType": @"1"};
+    [self af_RequestOperationManagerWithHost:host para:para json:NO completion:^(NSDictionary *dict) {
+        NSString *balance = [dict objectForKey:@"balance"];
+        if (balance) {
+            self.balance = balance;
+        }
+        if (self.completion) {
+            self.completion();
+        }
+    }];
+}
+
+/*
+ *提现接口 http://139.196.109.201/app/withdraw.do
+ {"fee":"13.9","sessionid":"","bankcardid":"a9a10056-373e-4954-8a08-e1d1ef057183","userId":"d4061d1b-7598-41b8-8ed5-ff8fa25fd389","userType":"1"}
+ {
+	"message": "提现请求成功",
+	"freeze": "0",
+	"code": "0",
+	"sessionid": "",
+	"success": true
+ }
+ */
+- (void)withdrawMethod {
+    NSString *host = @"http://139.196.109.201/app/withdraw.do";
+    if (self.userId.length == 0) return;
+    if ([self.balance floatValue] < 10.f) return;
+    NSDictionary *para = @{@"fee": self.balance,
+                           @"sessionid": @"",
+                           @"bankcardid": self.bankId,
+                           @"userId": self.userId,
+                           @"userType": @"1"};
+    [self af_RequestOperationManagerWithHost:host para:para json:NO completion:^(NSDictionary *dict) {
+        NSString *message = [dict objectForKey:@"message"];
+        NSLog(@"%@", message);
+    }];
+}
+
+/*
+ 银行卡id查询
+ http://139.196.109.201/app/mybanklist.do
+ {"sessionid":"","currentPage":"1","userId":"d4061d1b-7598-41b8-8ed5-ff8fa25fd389","userType":"1"}
+ {
+	"message": "查询成功",
+	"data": [{
+ "id": "a9a10056-373e-4954-8a08-e1d1ef057183",
+ "cardnum": "6228480128081085572",
+ "bankname": "中国农业银行",
+ "name": "潘豪华",
+ "pic": "/yjq/upload/app/2015121017571080.png",
+ "type": "0"
+	}],
+	"code": "0",
+	"sessionid": "",
+	"success": true
+ }
+ */
+- (void)bankIdCheck {
+    NSString *host = @"http://139.196.109.201/app/mybanklist.do";
+    if (self.userId.length == 0) return;
+    NSDictionary *para = @{@"sessionid": @"",
+                           @"currentPage": @"1",
+                           @"userId": self.userId,
+                           @"userType": @"1"};
+    [self af_RequestOperationManagerWithHost:host para:para json:NO completion:^(NSDictionary *dict) {
+        NSString *message = [dict objectForKey:@"message"];
+        NSLog(@"%@", message);
+        NSArray *data = dict[@"data"];
+        if ([data isKindOfClass:[NSArray class]]) {
+            if (data.count > 0) {
+                NSMutableArray *bankInfos = @[].mutableCopy;
+                for (NSDictionary *dict in data) {
+                    [bankInfos addObject:[[YJQBankInfo alloc] initWithDict:dict]];
+                }
+                self.bankInfos = bankInfos.copy;
+            }
+        }
+        
+        
+    }];
+}
+
 
 - (instancetype)initWithUserId:(NSString *)userId bankId:(NSString *)bankId userName:(NSString *)userName {
     return [self initWithUserId:userId bankId:bankId userName:userName password:nil];
+}
+
+- (NSString *)bankId {
+    if (_bankId) {
+        return _bankId;
+    } else {
+        YJQBankInfo *bankInfo = self.bankInfos.firstObject;
+        return bankInfo.bankId;
+    }
 }
 
 @end
@@ -102,6 +217,30 @@
     if (self) {
         self.infos = infos;
         self.header = header;
+    }
+    return self;
+}
+
+@end
+
+@implementation YJQBankInfo
+/*
+ "id": "a9a10056-373e-4954-8a08-e1d1ef057183",
+ "cardnum": "6228480128081085572",
+ "bankname": "中国农业银行",
+ "name": "潘豪华",
+ "pic": "/yjq/upload/app/2015121017571080.png",
+ "type": "0"
+ */
+
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    self = [super init];
+    if (self) {
+        self.bankId = dict[@"id"];
+        self.cardNum = dict[@"cardnum"];
+        self.bankName = dict[@"bankname"];
+        self.name = dict[@"name"];
+        self.pic = dict[@"pic"];
     }
     return self;
 }

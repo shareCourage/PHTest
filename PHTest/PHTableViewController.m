@@ -166,6 +166,10 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     cell.textLabel.text = model.userName;
+    NSString *name = [model.bankInfos.firstObject name];
+    if (model.balance) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@__%@__%@",model.userName, model.balance, (name ?: @"无")];
+    }
     if (model.userId) {
         cell.detailTextLabel.text = model.userId;
     } else {
@@ -179,6 +183,7 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     self.selectInfo = model;
+    [model withdrawMethod];
 #if 1
     [self addClick];
 #else
@@ -276,9 +281,9 @@
     [self.dataSource addObject:[self userInfosWithUserName:@[@"13169542457",//绑卡
                                                              @"15594625518",//绑卡
                                                              @"13201511884",//绑卡
+                                                             @"15820756843",//绑卡
                                                              @"13238686138",
                                                              @"18423248804",
-                                                             @"15820756843",//绑卡
                                                              @"13651406599",
                                                              @"15916931145"]
                                                    userIds:nil
