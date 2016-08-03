@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PHTest/PHTableViewController.m"
-            timestampString = "491811116.107132"
+            timestampString = "491925496.4124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-addUserName"
             landmarkType = "5">
          </BreakpointContent>

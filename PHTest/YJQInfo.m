@@ -91,8 +91,8 @@ typedef void(^YJQDictBlock)(NSDictionary *dict);
             }
         }];
     }
-//    [self balanceCheck];
-//    [self bankIdCheck];
+    [self balanceCheck];
+    [self bankIdCheck];
 }
 
 /*
@@ -244,5 +244,9 @@ typedef void(^YJQDictBlock)(NSDictionary *dict);
     }
     return self;
 }
+
+
+
+
 
 @end

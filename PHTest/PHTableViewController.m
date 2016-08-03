@@ -246,8 +246,9 @@
 
 
 - (void)addUserName {
-    [self.dataSource addObject:[self userInfosWithUserName:@[@"15818572527"]
-                                                   userIds:@[@"fdc2c531-dc9c-4388-8b25-f698eafe43ae"]
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"15818572527",
+                                                             @"15636404297"]
+                                                   userIds:nil//@[@"fdc2c531-dc9c-4388-8b25-f698eafe43ae"]
                                                   password:@"ygphh383509677H"
                                                     header:@"PHH"]];
     [self.dataSource addObject:[self userInfosWithUserName:@[@"15970179507",
@@ -289,6 +290,30 @@
                                                    userIds:nil
                                                   password:@"hu881125h"
                                                     header:@"胡子0730"]];
+    
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"17189262144",
+                                                             @"13054457008",
+                                                             @"13116767847",
+                                                             @"13236546802",
+                                                             @"13053141780",
+                                                             @"15664801157",
+                                                             @"13016604054",
+                                                             @"13082404624"]
+                                                   userIds:nil
+                                                  password:@"hu881125h"
+                                                    header:@"胡子0803_A"]];
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"15694636574",
+                                                             @"13201499474",
+                                                             @"13190112719",
+                                                             @"13148394041",
+                                                             @"13073652047",
+                                                             @"15680795038",
+                                                             @"13284222642"]
+                                                   userIds:nil
+                                                  password:@"hu881125h"
+                                                    header:@"胡子0803_B"]];
+    
+    
 }
 - (YJQInfoGroup *)userInfosWithUserName:(NSArray *)userNames userIds:(NSArray *)userIds password:(NSString *)password header:(NSString *)header{
     NSMutableArray *arrays = @[].mutableCopy;
