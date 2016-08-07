@@ -323,6 +323,19 @@
                                                   password:@"hu881125h"
                                                     header:@"胡子0803_B"]];
     
+    [self.dataSource addObject:[self userInfosWithUserName:@[@"14709251436",
+                                                             @"18704015673",
+                                                             @"15360149991",
+                                                             @"18729514099",
+                                                             @"18704021425",
+                                                             @"13093729635",
+                                                             @"13600146934",
+                                                             @"13078642087",
+                                                             @"13184235686",
+                                                             @"15916881225"]
+                                                   userIds:nil
+                                                  password:@"hu881125h"
+                                                    header:@"胡子0807"]];
     
 }
 - (YJQInfoGroup *)userInfosWithUserName:(NSArray *)userNames userIds:(NSArray *)userIds password:(NSString *)password header:(NSString *)header{
