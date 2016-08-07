@@ -167,8 +167,9 @@
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     cell.textLabel.text = model.userName;
     NSString *name = [model.bankInfos.firstObject name];
+    NSString *bankName = [model.bankInfos.firstObject bankName];
     if (model.balance) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@__%@__%@",model.userName, model.balance, (name ?: @"无")];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@__%@__%@__%@",model.userName, model.balance, (name ?: @"无"), (bankName ?: @"无")];
     }
     if (model.userId) {
         cell.detailTextLabel.text = model.userId;
@@ -183,7 +184,7 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     self.selectInfo = model;
-    [model withdrawMethod];
+//    [model withdrawMethod];
 #if 1
     [self addClick];
 #else
@@ -214,29 +215,38 @@
         if (data) {
             NSString *info = data[@"info"];
             NSLog(@"%@", info);
+            if ([info containsString:@"此药品监管码已被扫描"]) {
+                [self indexValueChanged];
+            }
         }
         if ([message isEqualToString:@"使用成功"]) {
-            NSString *string = self.titleTextField.text;
-            NSInteger len = 4;
-            NSInteger loc = string.length - len;
-            NSRange range = NSMakeRange(loc, len);
-            NSString *settleStr = [string substringWithRange:range];
-            NSInteger index = [settleStr integerValue];
-            index++;
-            settleStr = [NSString stringWithFormat:@"%@",@(index)];
-            NSMutableString *mustring = string.mutableCopy;
-            [mustring replaceCharactersInRange:range withString:settleStr];
-            self.titleTextField.text = mustring.copy;
-            [[NSUserDefaults standardUserDefaults] setObject:mustring.copy forKey:@"codeNum"];
-            [self.leftBtn setTitle:@"Y" forState:UIControlStateNormal];
-            [self.leftBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            [self indexValueChanged];
         } else {
             [self.leftBtn setTitle:@"N" forState:UIControlStateNormal];
             [self.leftBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
+        
+        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
+}
+
+- (void)indexValueChanged {
+    NSString *string = self.titleTextField.text;
+    NSInteger len = 4;
+    NSInteger loc = string.length - len;
+    NSRange range = NSMakeRange(loc, len);
+    NSString *settleStr = [string substringWithRange:range];
+    NSInteger index = [settleStr integerValue];
+    index++;
+    settleStr = [NSString stringWithFormat:@"%@",@(index)];
+    NSMutableString *mustring = string.mutableCopy;
+    [mustring replaceCharactersInRange:range withString:settleStr];
+    self.titleTextField.text = mustring.copy;
+    [[NSUserDefaults standardUserDefaults] setObject:mustring.copy forKey:@"codeNum"];
+    [self.leftBtn setTitle:@"Y" forState:UIControlStateNormal];
+    [self.leftBtn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
 }
 
 - (void)af_RequestOperationManagerWithHost:(NSString *)host para:(NSDictionary *)para {

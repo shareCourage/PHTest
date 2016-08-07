@@ -137,7 +137,7 @@ typedef void(^YJQDictBlock)(NSDictionary *dict);
 - (void)withdrawMethod {
     NSString *host = @"http://139.196.109.201/app/withdraw.do";
     if (self.userId.length == 0) return;
-    if ([self.balance floatValue] < 10.f) return;
+    if ([self.balance floatValue] < 10.f && self.balance) return;
     NSDictionary *para = @{@"fee": self.balance,
                            @"sessionid": @"",
                            @"bankcardid": self.bankId,
