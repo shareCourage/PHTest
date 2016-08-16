@@ -18,6 +18,8 @@
 		693D5B5C1D217B3300D0A377 /* PHTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B5B1D217B3300D0A377 /* PHTestTests.m */; };
 		693D5B671D217B3300D0A377 /* PHTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B661D217B3300D0A377 /* PHTestUITests.m */; };
 		693D5B761D217C0900D0A377 /* PHLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D5B751D217C0900D0A377 /* PHLabel.m */; };
+		693F202C1D63598400155EAA /* PHScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = 693F202B1D63598400155EAA /* PHScrollController.m */; };
+		693F202F1D6371F000155EAA /* PHScrollTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 693F202E1D6371F000155EAA /* PHScrollTwoController.m */; };
 		69D7C2B11D37F71200EE3261 /* PHReactiveCocoaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */; };
 		A9D10AE61D49F90700E3BF31 /* PHTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */; };
 		A9D10AE91D49FDBC00E3BF31 /* YJQInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */; };
@@ -63,6 +65,10 @@
 		693D5B681D217B3300D0A377 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		693D5B741D217C0900D0A377 /* PHLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHLabel.h; sourceTree = "<group>"; };
 		693D5B751D217C0900D0A377 /* PHLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHLabel.m; sourceTree = "<group>"; };
+		693F202A1D63598400155EAA /* PHScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHScrollController.h; sourceTree = "<group>"; };
+		693F202B1D63598400155EAA /* PHScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHScrollController.m; sourceTree = "<group>"; };
+		693F202D1D6371F000155EAA /* PHScrollTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHScrollTwoController.h; sourceTree = "<group>"; };
+		693F202E1D6371F000155EAA /* PHScrollTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHScrollTwoController.m; sourceTree = "<group>"; };
 		69D7C2AF1D37F71200EE3261 /* PHReactiveCocoaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHReactiveCocoaController.h; sourceTree = "<group>"; };
 		69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHReactiveCocoaController.m; sourceTree = "<group>"; };
 		A9032F98669DD0B7F774C222 /* Pods_PHTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PHTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +145,10 @@
 				69D7C2B01D37F71200EE3261 /* PHReactiveCocoaController.m */,
 				A9D10AE41D49F90700E3BF31 /* PHTableViewController.h */,
 				A9D10AE51D49F90700E3BF31 /* PHTableViewController.m */,
+				693F202A1D63598400155EAA /* PHScrollController.h */,
+				693F202B1D63598400155EAA /* PHScrollController.m */,
+				693F202D1D6371F000155EAA /* PHScrollTwoController.h */,
+				693F202E1D6371F000155EAA /* PHScrollTwoController.m */,
 				A9D10AE71D49FDBC00E3BF31 /* YJQInfo.h */,
 				A9D10AE81D49FDBC00E3BF31 /* YJQInfo.m */,
 				6915E2D41D4CF164001BD1D6 /* PHTargetProxy.h */,
@@ -259,6 +269,7 @@
 				TargetAttributes = {
 					693D5B3D1D217B3200D0A377 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = P2YEPQ42SA;
 					};
 					693D5B561D217B3300D0A377 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -372,6 +383,8 @@
 			files = (
 				693D5B761D217C0900D0A377 /* PHLabel.m in Sources */,
 				A9D10AE91D49FDBC00E3BF31 /* YJQInfo.m in Sources */,
+				693F202C1D63598400155EAA /* PHScrollController.m in Sources */,
+				693F202F1D6371F000155EAA /* PHScrollTwoController.m in Sources */,
 				A9D10AE61D49F90700E3BF31 /* PHTableViewController.m in Sources */,
 				6915E2D61D4CF164001BD1D6 /* PHTargetProxy.m in Sources */,
 				693D5B491D217B3200D0A377 /* ViewController.m in Sources */,
@@ -521,10 +534,13 @@
 			baseConfigurationReference = 0BB58996768FA4BE5EBEE87D /* Pods-PHTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PHTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PaulPan.PHTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -533,10 +549,13 @@
 			baseConfigurationReference = 5E28DD8F675C8B61E82DC389 /* Pods-PHTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = PHTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = PaulPan.PHTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -184,7 +184,7 @@
     YJQInfoGroup *group = [self.dataSource objectAtIndex:indexPath.section];
     YJQInfo *model = [group.infos objectAtIndex:indexPath.row];
     self.selectInfo = model;
-//    [model withdrawMethod];
+    [model withdrawMethod];
 #if 1
     [self addClick];
 #else

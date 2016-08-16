@@ -91,8 +91,8 @@ typedef void(^YJQDictBlock)(NSDictionary *dict);
             }
         }];
     }
-//    [self balanceCheck];
-//    [self bankIdCheck];
+    [self balanceCheck];
+    [self bankIdCheck];
 }
 
 /*
@@ -138,6 +138,8 @@ typedef void(^YJQDictBlock)(NSDictionary *dict);
     NSString *host = @"http://139.196.109.201/app/withdraw.do";
     if (self.userId.length == 0) return;
     if ([self.balance floatValue] < 10.f && self.balance) return;
+    if (!self.balance) return;
+    if (!self.bankId) return;
     NSDictionary *para = @{@"fee": self.balance,
                            @"sessionid": @"",
                            @"bankcardid": self.bankId,
